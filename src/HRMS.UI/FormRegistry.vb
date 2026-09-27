@@ -31,6 +31,7 @@ Friend NotInheritable Class FormRegistry
             Sub(id, active) AppServices.Masters.SetDivisionActive(id, active), "FACTORY_EDIT"))
         Register("mst.employee", Function() New frmEmployeeList())
         Register("mst.fy", Function() New frmFinancialYear())
+        Register("mst.minwage", Function() New frmMinWage())
         Register("mst.holiday", Function() New frmHolidayCalendar())
         Register("att.monthly", Function() New frmMonthlyAttendance())
     End Sub

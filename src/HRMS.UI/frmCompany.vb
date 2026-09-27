@@ -70,12 +70,13 @@ Friend Class frmCompany
         lblTitle.Font = Theme.TitleFont
         lblTitle.ForeColor = Theme.Primary
         lblTitle.Location = New Point(20, 10)
-        Controls.Add(lblTitle)
+        Controls.Add(UiKit.MakeHeader("Company", "Details of the open company. These print on challans, registers and reports.", 760, 80))
+        'Controls.Add(lblTitle)
         lblHint.ForeColor = Theme.Muted
         lblHint.Location = New Point(22, 48)
-        Controls.Add(lblHint)
+        'Controls.Add(lblHint)
 
-        tabs.SetBounds(16, 76, 728, 470)
+        tabs.SetBounds(16, 82, 728, 470)
         tabs.Controls.Add(BuildBasicTab())
         tabs.Controls.Add(BuildContactTab())
         tabs.Controls.Add(BuildRegistrationsTab())

@@ -24,11 +24,13 @@ Friend Class frmFinancialYear
 
     Public Sub New()
         Text = "Financial Year"
-        ClientSize = New Size(620, 520)
+        ClientSize = New Size(940, 520)
         Dim canEdit As Boolean = AppSession.Require().Has("COMPANY_EDIT")
+        Controls.Add(UiKit.MakeHeader("Financial Year", "Create or select Financial Year", ClientSize.Width, 80))
 
         UiKit.StyleGrid(grid)
         grid.Dock = DockStyle.Fill
+        grid.Location = New Point(12, 80)
         Controls.Add(grid)
 
         Dim editor As New GroupBox()
@@ -38,15 +40,15 @@ Friend Class frmFinancialYear
         txtName.MaxLength = 9
         dtFrom.Format = DateTimePickerFormat.Short
         dtTo.Format = DateTimePickerFormat.Short
-        UiKit.PlaceField(editor, "FY Name * (e.g. 2026-27)", 16, 34, txtName, 170, 30, 150)
-        UiKit.PlaceField(editor, "From Date *", 16, 70, dtFrom, 170, 30, 150)
-        UiKit.PlaceField(editor, "To Date *", 16, 106, dtTo, 170, 30, 150)
+        UiKit.PlaceField(editor, "FY Name * (e.g. 2026-27)", 16, 34, txtName, 210, 30, 150)
+        UiKit.PlaceField(editor, "From Date *", 16, 70, dtFrom, 210, 70, 150)
+        UiKit.PlaceField(editor, "To Date *", 16, 106, dtTo, 210, 106, 150)
         btnNew.Location = New Point(400, 24)
         btnSave.Location = New Point(400, 64)
         btnSetCurrent.Location = New Point(400, 104)
         chkInactive.Text = "Show inactive"
         chkInactive.AutoSize = True
-        chkInactive.Location = New Point(500, 24)
+        chkInactive.Location = New Point(550, 24)
         editor.Controls.Add(btnNew)
         editor.Controls.Add(btnSave)
         editor.Controls.Add(btnSetCurrent)
@@ -60,6 +62,7 @@ Friend Class frmFinancialYear
         header.Dock = DockStyle.Top
         header.Height = 44
         header.Padding = New Padding(12, 8, 0, 0)
+        header.Location = New Point(20, 10)
         Controls.Add(header)
 
         btnNew.Enabled = canEdit

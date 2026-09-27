@@ -72,7 +72,19 @@ Public NotInheritable Class MasterService
         AppSession.Require().Require("EMPLOYEE_EDIT")
         MasterRepo.DesignationSetActive(desigID, isActive)
     End Sub
+    ' ---------- Minimum Wage ----------
+    Public Function MinWages(Optional zone As String = Nothing, Optional skillCategory As String = Nothing, Optional asOfDate As Date? = Nothing) As DataTable
+        AppSession.Require()
+        Return MasterRepo.MinWageList(zone, skillCategory, asOfDate)
+    End Function
 
+    Public Function SaveMinWage(zone As String, skillCategory As String, dailyRate As Decimal, monthlyRate As Decimal, fromDate As Date) As Integer
+        AppSession.Require().Require("RATE_EDIT")
+        If String.IsNullOrWhiteSpace(zone) Then Throw New BusinessException("Zone is required.")
+        If String.IsNullOrWhiteSpace(skillCategory) Then Throw New BusinessException("Skill category is required.")
+        If dailyRate <= 0 OrElse monthlyRate <= 0 Then Throw New BusinessException("Rates must be positive.")
+        Return MasterRepo.MinWageSave(zone.Trim(), skillCategory.Trim(), dailyRate, monthlyRate, fromDate)
+    End Function
     ' ---------- Shift ----------
     Public Function Shifts(activeOnly As Boolean) As DataTable
         Return MasterRepo.ShiftList(activeOnly)

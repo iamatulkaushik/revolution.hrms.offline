@@ -89,7 +89,20 @@ Public NotInheritable Class MasterRepo
             Db.Exec(cn, "mst.usp_Designation_SetActive", Db.P("@DesigID", desigID), Db.P("@IsActive", isActive))
         End Using
     End Sub
+    ' ---------- Minimum Wage ----------
+    Public Shared Function MinWageList(Optional zone As String = Nothing, Optional skillCategory As String = Nothing, Optional asOfDate As Date? = Nothing) As DataTable
+        Using cn As SqlConnection = Db.OpenSession()
+            Return Db.Table(cn, "mst.usp_MinWage_List", Db.P("@Zone", zone), Db.P("@SkillCategory", skillCategory), Db.P("@AsOfDate", asOfDate))
+        End Using
+    End Function
 
+    Public Shared Function MinWageSave(zone As String, skillCategory As String, dailyRate As Decimal, monthlyRate As Decimal, fromDate As Date) As Integer
+        Using cn As SqlConnection = Db.OpenSession()
+            Return Convert.ToInt32(Db.Scalar(cn, "mst.usp_MinWage_Save",
+                Db.P("@Zone", zone), Db.P("@SkillCategory", skillCategory),
+                Db.P("@DailyRate", dailyRate), Db.P("@MonthlyRate", monthlyRate), Db.P("@FromDate", fromDate)))
+        End Using
+    End Function
     ' ---------- Shift ----------
     Public Shared Function ShiftList(activeOnly As Boolean) As DataTable
         Using cn As SqlConnection = Db.OpenSession()
