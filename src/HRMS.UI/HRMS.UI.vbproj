@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- 1. Use the Windows-specific .NET 10 target -->
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <!-- 2. Explicitly enable Windows Forms -->
+    <UseWindowsForms>true</UseWindowsForms>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>HRMS.UI</RootNamespace>
+    <AssemblyName>RevolutionHRMS</AssemblyName>
+    <StartupObject>HRMS.UI.Program</StartupObject>
+    <MyType>Empty</MyType>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="8.7.1" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HRMS.Common\HRMS.Common.vbproj" />
+    <ProjectReference Include="..\HRMS.Models\HRMS.Models.vbproj" />
+    <ProjectReference Include="..\HRMS.BLL\HRMS.BLL.vbproj" />
+  </ItemGroup>
+</Project>

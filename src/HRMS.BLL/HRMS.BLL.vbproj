@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- 1. Use the Windows-specific .NET 10 target -->
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>HRMS.BLL</RootNamespace>
+    <AssemblyName>HRMS.BLL</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HRMS.Common\HRMS.Common.vbproj" />
+    <ProjectReference Include="..\HRMS.Models\HRMS.Models.vbproj" />
+    <ProjectReference Include="..\HRMS.DAL\HRMS.DAL.vbproj" />
+  </ItemGroup>
+</Project>
